@@ -20,7 +20,7 @@ def visible(element):
     return True
 
 #open only the sample directory 
-ix=index.open_dir("database") 
+ix=index.open_dir("../database") 
 schema = Schema(id=ID(stored=True),content=TEXT(stored = True))
 with ix.searcher() as searcher:
 	queryString = ""
