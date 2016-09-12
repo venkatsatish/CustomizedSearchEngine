@@ -1,16 +1,15 @@
 # CustomizedSearchEngine
 
 Features added:
-  Multifield__
-  Or grouping__
-  Variations__
-  Spell Checker__
-  Flask(backend)__
-  Stop Words.__
-  Autocomplete(at front end as of now),
-  Header Tags,
-  lowercase(as of now not required),
-  Ranking using TFIDF and BM25,
+  Multifield<br />
+  Variations<br />
+  Spell Checker<br />
+  Flask(backend)<br />
+  Stop Words.<br />
+  Autocomplete(at front end as of now)<br />
+  Header Tags<br />
+  lowercase(as of now not required)<br />
+  Ranking using TFIDF and BM25<br />
   precision@10.
 
 Steps to be done:
