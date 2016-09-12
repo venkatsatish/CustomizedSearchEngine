@@ -12,9 +12,9 @@ Features added:
   Ranking using TFIDF and BM25<br />
   precision@10.
 
-Steps to be done:
-  Install flash and whoosh and beautiful soup and progress bar
-  To index the files, run index.py
-  To test it, run test.py
-  Now open locahost:8081/ and give the query and select TF-IDF or BM25
-  It's time for you to Judge us!!
+Steps to be done:<br />
+  Install flash and whoosh and beautiful soup and progress bar<br />
+  To index the files, run index.py<br />
+  To test it, run test.py<br />
+  Now open locahost:8081/ and give the query and select TF-IDF or BM25<br />
+  It's time for you to Judge us!!<br />
