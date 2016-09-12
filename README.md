@@ -1,14 +1,12 @@
 # CustomizedSearchEngine
 
 Features added:
-  Multifield,
-  Or grouping,
-  Variations,
-
-  Spell Checker,
-  Flask(backend),
-  Stop Words filter.
-
+  Multifield__
+  Or grouping__
+  Variations__
+  Spell Checker__
+  Flask(backend)__
+  Stop Words.__
   Autocomplete(at front end as of now),
   Header Tags,
   lowercase(as of now not required),
