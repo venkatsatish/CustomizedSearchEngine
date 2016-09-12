@@ -4,12 +4,14 @@ Features added:
   Multifield,
   Or grouping,
   Variations,
-  Spell Checker.
-  Flask,
+
+  Spell Checker,
+  Flask(backend),
+  Stop Words filter.
+
   Autocomplete(at front end as of now),
   Header Tags,
   lowercase(as of now not required),
-  stop words,
   Ranking using TFIDF and BM25,
   precision@10.
 
