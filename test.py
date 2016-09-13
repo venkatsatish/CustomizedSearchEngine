@@ -16,12 +16,17 @@ from flask import Flask, redirect, url_for, request, render_template
 app = Flask(__name__)
 
 #Function that removes all the lines with tags style and script and document and head and title and also comments
-ix=index.open_dir("final_index")
+ix=index.open_dir("index")
 
 @app.route('/')
 def index():
 	return render_template('search.html')
 
+
+@app.route('/final_database/<name>')
+def website(name):
+	content = open('dataset/'+name,'r').read();
+	return content
 
 @app.route('/search',methods = ['POST', 'GET'])
 def search():
@@ -114,4 +119,4 @@ def searcher(queryString,p):
 				else:
 					return render_template('result.html',correct=queryString,num=0)
 if __name__ == '__main__':
-	app.run(debug = True,port=8081)
+	app.run(debug = True,host='0.0.0.0',port=8080)
