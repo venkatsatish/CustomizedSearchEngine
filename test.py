@@ -12,6 +12,7 @@ from whoosh import qparser
 from whoosh.qparser import QueryParser
 import re,os,codecs,sys
 from flask import Flask, redirect, url_for, request, render_template
+import webbrowser
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ ix=index.open_dir("index")
 
 @app.route('/')
 def index():
-	return render_template('search.html')
+	return render_template('result.html',correct="",num=0)
 
 
 @app.route('/final_database/<name>')
@@ -31,12 +32,12 @@ def website(name):
 @app.route('/search',methods = ['POST', 'GET'])
 def search():
 	#open only the sample directory
-	if request.method == 'POST': 
+	if request.method == 'POST':
 		queryString = request.json['query']
 		p = request.json['score']
 		return searcher(queryString,p)
 
-def searcher(queryString,p):	
+def searcher(queryString,p):
 	ls = []
 	schema = Schema(id=ID(stored=True),img=TEXT(stored=True),title=TEXT(stored=True),h1=TEXT(analyzer=StemmingAnalyzer(),stored=True),content=TEXT(analyzer=StemmingAnalyzer(), stored = True))
 	if(p == "1"):
@@ -50,7 +51,7 @@ def searcher(queryString,p):
 				print "Did you mean:" + corrected.string
 				print "Showing results for " + corrected.string
 				newQuery = qparserObject.parse(corrected.string)
-				correctedResults = searcher.search(newQuery,terms=True)   
+				correctedResults = searcher.search(newQuery,terms=True)
 				l = len(correctedResults)
 				if(len(correctedResults) != 0):
 					for hit in correctedResults:
@@ -62,7 +63,7 @@ def searcher(queryString,p):
 						a["data"] = hit.highlights("content",top = 5)
 						ls.append(a)
 					print "hello"
-					return render_template('result.html',entries=ls,num=l,query=queryString,sim=0,correct = corrected.string)	
+					return render_template('result.html',entries=ls,num=l,query=queryString,sim=0,correct = corrected.string)
 				else:
 					return render_template('result.html',correct=queryString,num=0)
 			else:
@@ -76,7 +77,7 @@ def searcher(queryString,p):
 						a["file"] = "../final_database/"+hit["id"]+".html"
 						a["data"] = hit.highlights("content",top = 5)
 						ls.append(a)
-					return render_template('result.html',entries=ls,num=l,query=queryString,sim=2,correct = corrected.string)	
+					return render_template('result.html',entries=ls,num=l,query=queryString,sim=2,correct = corrected.string)
 				else:
 					return render_template('result.html',correct=queryString,num=0)
 	else:
@@ -115,8 +116,8 @@ def searcher(queryString,p):
 						a["file"] = "../final_database/"+hit["id"]+".html"
 						a["data"] = hit.highlights("content",top = 5)
 						ls.append(a)
-					return render_template('result.html',entries=ls,num=l,query=queryString,sim=3,correct = corrected.string)	
+					return render_template('result.html',entries=ls,num=l,query=queryString,sim=3,correct = corrected.string)
 				else:
 					return render_template('result.html',correct=queryString,num=0)
 if __name__ == '__main__':
-	app.run(debug = True,host='0.0.0.0',port=8080)
+	app.run(debug = True,host='0.0.0.0')
